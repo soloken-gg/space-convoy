@@ -1,0 +1,182 @@
+{
+  "project_name": "Space Convoy",
+  "domain_and_context": {
+    "app_type": "3d_experience",
+    "target_audience": "Children aged 8-18 in quiet clinical/educational setting",
+    "display": "32-inch physical display, 9:16 portrait orientation, 1080x1920 px target resolution",
+    "interaction": "Touch-based, minimum 60x60px touch targets"
+  },
+  "theme_and_archetype": {
+    "theme": "Dark",
+    "archetype": "Atmospheric Deep Space (Variant of Archetype 5 Jewel & Luxury + Archetype 1 Calm)",
+    "vibe": "Destiny 2 UI meets Monument Valley warmth. Calm, purposeful, adventurous, never stressful."
+  },
+  "colors": {
+    "background": {
+      "hex": "#0A1628",
+      "name": "Deep Navy Space",
+      "usage": "Base scene background and solid container backgrounds."
+    },
+    "primary": {
+      "hex": "#00B4D8",
+      "name": "Cyan Accent",
+      "usage": "Key accent color for target icons, active state, glowing accents, and primary buttons."
+    },
+    "success": {
+      "hex": "#06D6A0",
+      "name": "Lime Green",
+      "usage": "Streak celebrations, correct feedback overlays, and level completion indicators."
+    },
+    "warning": {
+      "hex": "#F4A261",
+      "name": "Amber",
+      "usage": "Missed targets, time warnings, or alert states."
+    },
+    "secondary": {
+      "hex": "#5A189A",
+      "name": "Nebula Violet",
+      "usage": "Subtle complementary color for nebula clouds, inactive elements, or rim lighting."
+    },
+    "surface": {
+      "light": "rgba(255, 255, 255, 0.05)",
+      "medium": "rgba(10, 22, 40, 0.6)",
+      "glass": "backdrop-blur-xl bg-[#0A1628]/60",
+      "usage": "HUD backgrounds, modal overlays, and elevated cards."
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#8D99AE",
+      "accent": "#00B4D8"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "primary": {
+        "family": "Outfit",
+        "fallback": "sans-serif",
+        "weights": ["400", "500", "700"],
+        "usage": "General UI text, headings, instructions, buttons, and summary stats."
+      },
+      "numeric": {
+        "family": "Orbitron",
+        "fallback": "sans-serif",
+        "weights": ["500", "700", "900"],
+        "usage": "Scores, levels, target counts, and timers. Enhances the 'scientifically designed' space feel."
+      }
+    },
+    "scales": {
+      "h1": "text-5xl lg:text-6xl tracking-tight font-bold font-primary",
+      "h2": "text-3xl lg:text-4xl tracking-tight font-bold font-primary",
+      "h3": "text-xl lg:text-2xl font-medium font-primary",
+      "body": "text-lg lg:text-xl font-normal font-primary leading-relaxed",
+      "numeric_large": "text-6xl lg:text-7xl font-bold font-numeric tracking-wider",
+      "numeric_medium": "text-3xl lg:text-4xl font-bold font-numeric tracking-wide",
+      "label": "text-base uppercase tracking-widest font-primary text-secondary"
+    }
+  },
+  "spacing_and_layout": {
+    "grid_system": "flexbox column for portrait 9:16 layout",
+    "touch_targets": {
+      "min_size": "min-h-[60px] min-w-[60px]",
+      "padding": "p-4 md:p-6"
+    },
+    "container_padding": "px-8 py-6",
+    "hud_positioning": "Top 8% of screen. absolute top-0 left-0 right-0 h-[8vh] z-50",
+    "bottom_action_area": "Bottom 12% of screen. absolute bottom-0 left-0 right-0 h-[12vh] z-50 flex items-center justify-center pb-8 px-8"
+  },
+  "surfaces_and_borders": {
+    "glassmorphism": {
+      "classes": "backdrop-blur-xl bg-[#0A1628]/70 border border-white/10 shadow-[0_8px_32px_rgba(0,180,216,0.1)]",
+      "usage": "HUD container, Start screen cards, and Summary modal."
+    },
+    "solid": {
+      "classes": "bg-[#0A1628] border-2 border-[#00B4D8]/30",
+      "usage": "Input fields and static non-overlay panels."
+    },
+    "radius": {
+      "button": "rounded-full",
+      "card": "rounded-3xl",
+      "pill": "rounded-full"
+    }
+  },
+  "motion_and_interactions": {
+    "hover_states": "hover:bg-white/10 transition-colors duration-300",
+    "active_states": "active:scale-95 transition-transform duration-150",
+    "trial_phases": {
+      "cue": "1500ms duration. Targets pulse with #00B4D8 glow.",
+      "isi": "500-1000ms. Targets fade back to neutral.",
+      "motion": "3-6s. Smooth interpolation in 3D space.",
+      "response": "Touch interaction enabled. Highlight touched targets with #00B4D8.",
+      "feedback": "Correct hits flash #06D6A0, incorrect misses flash #F4A261."
+    },
+    "celebration": "Framer motion staggered entrance for streak banners (y: 50 -> 0, opacity: 0 -> 1) with slight overshoot."
+  },
+  "components": {
+    "start_screen": {
+      "layout": "Centered glassmorphism card (max-w-md w-full) over 3D background.",
+      "elements": [
+        "Title: Space Convoy (font-primary, text-primary)",
+        "Subtitle/Instructions: Calm, encouraging text.",
+        "Input: Nickname entry field (h-16, rounded-xl, border-2 border-[#00B4D8]/50 bg-transparent text-center text-xl text-white focus:border-[#00B4D8] focus:ring-1 focus:ring-[#00B4D8])",
+        "Button: Large 'Start Mission' pill button."
+      ]
+    },
+    "hud": {
+      "layout": "Flex container, items-center, justify-between w-full h-full px-8",
+      "elements": {
+        "score_left": "Score value in Orbitron (text-[#00B4D8] text-4xl font-bold) with 'SCORE' label underneath.",
+        "level_center": "Glassmorphism Pill displaying 'LVL' + number in Orbitron (text-white).",
+        "targets_right": "Row of small spaceship icons indicating targets to track. Color-coded based on phase.",
+        "pause": "Top-right absolute or integrated into target area, min 60x60 touch target."
+      }
+    },
+    "confirm_button": {
+      "layout": "Large floating pill button spanning 80% width in the bottom 12% area.",
+      "classes": "w-full max-w-sm h-20 rounded-full bg-[#00B4D8] text-white text-3xl font-bold font-primary tracking-widest shadow-[0_0_30px_rgba(0,180,216,0.3)] hover:bg-[#0096B4] hover:shadow-[0_0_40px_rgba(0,180,216,0.5)] active:scale-95 transition-all",
+      "text": "CONFIRM"
+    },
+    "feedback_banners": {
+      "layout": "Absolute positioned dead center or just below HUD.",
+      "success": "Text 'PERFECT!' or 'STREAK!' in text-[#06D6A0] font-orbitron text-5xl with text-shadow glow.",
+      "warning": "Text 'MISSED ONE' in text-[#F4A261] font-primary text-3xl."
+    },
+    "summary_screen": {
+      "layout": "Full-screen glassmorphism overlay covering 3D scene.",
+      "elements": [
+        "Header: Session Complete (text-4xl text-[#06D6A0])",
+        "Stats Grid: 2-column bento grid for Total Score, Accuracy, Max Streak.",
+        "Actions: 'Export Log' (secondary button outline) and 'Play Again' (primary button solid)."
+      ]
+    }
+  },
+  "accessibility_and_testing": {
+    "contrast": "All text must meet WCAG AA contrast ratio. HUD glassmorphism must have enough opacity to ensure legibility over the 3D scene.",
+    "touch": "Strict adherence to 60x60px minimum touch targets.",
+    "testing_attributes": "All interactive and key informational elements MUST include a 'data-testid' attribute (e.g., data-testid='start-game-button', data-testid='score-display')."
+  },
+  "assets_and_media": {
+    "background_nebula": {
+      "url": "https://images.pexels.com/photos/28500137/pexels-photo-28500137.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Ethereal blue nebula texture. To be used as the environment map, background texture, or blended with R3F <Stars> component to create the deep navy/purple/cyan space backdrop."
+    },
+    "hud_icons": {
+      "strategy": "Use Lucide-React or Phosphor Icons for minimalist geometric shapes. Avoid complex SVG illustrations to maintain the Destiny 2 clinical cleanliness."
+    }
+  },
+  "three_js_guidelines": {
+    "stack": "React Three Fiber (R3F) + Drei",
+    "lighting": "Soft ambient light (intensity 0.5), directional rim lighting (cyan and purple) to separate dark objects from the dark background.",
+    "materials": "MeshStandardMaterial with high roughness and subtle metalness for the spaceships/asteroids. Unlit glowing materials (MeshBasicMaterial) for active targets.",
+    "performance": "Limit post-processing (Bloom) if it drops frame rate below 60fps on typical 32-inch displays. The game must run flawlessly."
+  },
+  "instructions_to_main_agent": [
+    "Build the 3D space scene using R3F and map the background_nebula URL to a texture or background environment.",
+    "Implement the 9:16 portrait layout tightly. The canvas should be fixed absolute covering the screen.",
+    "Overlay the UI using absolute positioning (HUD top 8%, Confirm Button bottom 12%).",
+    "Use pure HTML/Tailwind for the UI overlays rather than rigid UI libraries to allow custom spacing and glassmorphism.",
+    "Ensure the trial sequence logic correctly drives the state and visuals in R3F (cue -> isi -> motion -> response -> feedback).",
+    "Incorporate Framer Motion for UI transitions (Start Screen fading out, Streak celebrations dropping in).",
+    "Do NOT use 'Inter', 'Roboto', or other generic fonts. Use 'Outfit' for UI and 'Orbitron' for numbers.",
+    "Implement data-testid on every clickable or tracking element."
+  ]
+}

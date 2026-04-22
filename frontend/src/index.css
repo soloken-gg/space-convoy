@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    font-family: "Outfit", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #050a14;
+    color: #fff;
+}
+
+@layer base {
+    :root {
+        /* Space Convoy palette mapped to shadcn tokens (dark theme baseline) */
+        --background: 215 62% 10%;
+        --foreground: 0 0% 100%;
+        --card: 215 62% 10%;
+        --card-foreground: 0 0% 100%;
+        --popover: 215 62% 10%;
+        --popover-foreground: 0 0% 100%;
+        --primary: 192 100% 42%;
+        --primary-foreground: 215 62% 8%;
+        --secondary: 215 40% 18%;
+        --secondary-foreground: 0 0% 100%;
+        --muted: 215 30% 18%;
+        --muted-foreground: 215 16% 65%;
+        --accent: 192 100% 42%;
+        --accent-foreground: 215 62% 8%;
+        --destructive: 26 86% 67%;
+        --destructive-foreground: 215 62% 8%;
+        --border: 215 30% 22%;
+        --input: 215 30% 22%;
+        --ring: 192 100% 42%;
+        --radius: 0.75rem;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
+}

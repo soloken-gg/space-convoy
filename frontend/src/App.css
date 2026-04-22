@@ -1,0 +1,134 @@
+/* Space Convoy — global reset + portrait canvas shell */
+
+html,
+body,
+#root,
+.App {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    font-family:
+        "Outfit",
+        system-ui,
+        sans-serif;
+}
+
+.font-numeric {
+    font-family: "Orbitron", "Outfit", sans-serif;
+    font-variant-numeric: tabular-nums;
+}
+
+.font-primary {
+    font-family: "Outfit", system-ui, sans-serif;
+}
+
+/* Portrait stage: always 9:16, letterbox if device doesn't match */
+.stage-portrait {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background:
+        radial-gradient(
+            ellipse at 30% 10%,
+            rgba(90, 24, 154, 0.25),
+            transparent 60%
+        ),
+        radial-gradient(
+            ellipse at 70% 90%,
+            rgba(0, 180, 216, 0.18),
+            transparent 60%
+        ),
+        #050a14;
+}
+
+.stage-portrait__inner {
+    position: relative;
+    aspect-ratio: 9 / 16;
+    height: 100vh;
+    max-height: 100vh;
+    max-width: 100vw;
+    width: auto;
+    background: #0a1628;
+    overflow: hidden;
+    box-shadow:
+        0 0 120px rgba(0, 180, 216, 0.08),
+        0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+/* When viewport is portrait narrower than 9:16, scale by width */
+@media (max-aspect-ratio: 9/16) {
+    .stage-portrait__inner {
+        width: 100vw;
+        height: auto;
+    }
+}
+
+.scene-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: manipulation;
+}
+
+.hud-shell {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Individual HUD children opt into pointer events via class (buttons, bars).
+   Overlays that must stay transparent (e.g. response-flash) keep
+   pointer-events: none via Tailwind. Do NOT force pointer-events on all
+   children — it breaks canvas tapping through transparent overlays. */
+
+/* Hide text-selection everywhere in game */
+.no-select,
+.no-select * {
+    -webkit-user-select: none !important;
+    user-select: none !important;
+}
+
+/* Subtle border flash animation for response phase */
+@keyframes borderFlash {
+    0%,
+    100% {
+        box-shadow: inset 0 0 0 0px rgba(0, 180, 216, 0);
+    }
+    50% {
+        box-shadow: inset 0 0 60px 2px rgba(0, 180, 216, 0.55);
+    }
+}
+
+.response-flash {
+    animation: borderFlash 900ms ease-in-out infinite;
+}
+
+@keyframes trialGap {
+    from {
+        background: rgba(0, 0, 0, 0);
+    }
+    to {
+        background: rgba(0, 0, 0, 0.55);
+    }
+}
+
+.trial-dim {
+    animation: trialGap 500ms ease forwards;
+}
+
+/* Accessibility: reduced-motion */
+.reduced-motion * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+}
